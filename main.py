@@ -4,6 +4,12 @@ from game.scenes.base import Scene
 from game import config
 
 
+from game.scenes.title import show_menu
+
+if __name__ == "__main__":
+    show_menu()
+
+
 class DummyScene(Scene):
     def __init__(self):
         Scene.__init__(self)
