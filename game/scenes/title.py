@@ -5,3 +5,6 @@ game_title.aletheia()
 game_title.magic_wand()
 
 print("Welcome to Aletheia, a text-based magical girl fight game.") #this text is to be replaced oml cringe
+print("a. tutorial")
+print("b. start game")
+print("c. customize your mahou shoujo")
