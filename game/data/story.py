@@ -23,15 +23,44 @@ INTRO = [
     ("", "You got this. All the best."),
 ]
 
+
 WIN_ROUND = [
-    ("", "Hell yeah!")
+    ("magicalgirl", "I don't understand, what is happening?"),
+
+    ("magicalgirl", "Oh no, there's more.... Aaah!"),
+]
+
+GAME_OVER = [
+    ("magicalgirl", "They're gone, at least.."),
+
+    ("magicalgirl", "...what's that on the ground?"),
+
+    ("", "*Magicalgirl peers down at a golden petal. It screams familiarity. She proceeds to inspect it."),
+
+    ("magicalgirl", "..I feel like... I've seen this somewhere.. before.."),
+
+    ("", "It brings back memories. Of a garden."),
+
+    ("", "Of her childhood, under the bright sunshine,"),
+
+    ("", "playing with her other magical girl friends."),
+
+    ("magicalgirl", "Why do I... suddenly remember them now? And what happened to them..."),
+
+    ("magicalgirl", "It just feels like.. all my memories have slipped away.."),
+
+    ("magicalgirl", "But... wasn't I always here? Then.."),
+
+    ("magicalgirl", "...."),
+
+    ("magicalgirl", "?!?!?!"),
+
+    ("???", "Finally, I've been waiting.... a long time... for you."),
+
+    # Game over
+    ("", "GAME OVER"),
 ]
 
 LOSE_ROUND = [
     ("", "You fucked!")
-]
-
-GAME_OVER = [
-    ("", "The city is quiet again... but the magic is gone."),
-    ("", "Game over."),
 ]

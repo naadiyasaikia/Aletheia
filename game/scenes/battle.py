@@ -173,7 +173,7 @@ class BattleScene(Scene):
     #==========Skill Animation============
     def use_skill(self, index):
         if self.casting != None:
-            return                      
+            return
         skill = self.skills[index]
         if skill.ready():
             self.casting = {"index": index, "timer": 0.0}
