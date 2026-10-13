@@ -1,7 +1,6 @@
 import random
 from game.scenes.base import Scene
 from game.renderer import draw_text, draw_lines
-from game.assets import load_art
 from game.entities.skill import Skill
 from game.entities.enemy import Enemy
 from game.data.skills import SKILLS
@@ -9,7 +8,7 @@ from game.data.enemies import ENEMIES
 from game.data.characters import CHARACTERS
 from game.battle.skill_effects import EFFECTS
 from game.state import state
-
+from game.assets import load_art, load_frames
 
 class BattleScene(Scene):
     def __init__(self):
@@ -18,7 +17,13 @@ class BattleScene(Scene):
         self.player_max_hp = char["hp"]
         self.player_hp = char["hp"]
         self.player_art = load_art("girls", char["art"])
-
+        self.casting = None
+        #for skill position
+        self.fx_positions = {
+            "player":  (6, 2),
+            "enemies": (4, 38),
+            "center":  (2, 20),
+        }
         # 4 skills, each skill has its own cooldown and charges
         self.skill_ids = char["skills"]
         self.skills = []
@@ -32,13 +37,6 @@ class BattleScene(Scene):
 
         self.enemies = []
         self.spawn_timer = 0
-
-    def use_skill(self, index):
-        skill = self.skills[index]
-        if skill.ready():
-            used = EFFECTS[self.skill_ids[index]](self, skill)
-            if used:
-                skill.use()
 
     def take_hit(self, dmg):
         if self.shield_time > 0:
@@ -63,6 +61,11 @@ class BattleScene(Scene):
             self.use_skill(3)
 
     def update(self, dt):
+        if self.casting != None:
+            self.casting["timer"] = self.casting["timer"] + dt
+            skill = self.skills[self.casting["index"]]
+            if self.casting["timer"] >= skill.cast:
+                self.finish_cast()
         for s in self.skills:
             s.update(dt)
 
@@ -119,6 +122,9 @@ class BattleScene(Scene):
         # character on the left
         draw_lines(stdscr, 7, 4, self.player_art)
 
+        #skill animation
+        self.draw_fx(stdscr)
+
         # enemy on the right, each enemy takes 3 lines
         for i in range(len(self.enemies)):
             e = self.enemies[i]
@@ -131,3 +137,36 @@ class BattleScene(Scene):
         for i in range(len(self.skills)):
             s = self.skills[i]
             draw_text(stdscr, 19 + i, 2, "[" + str(i + 1) + "] " + s.name + "  " + self.cd_bar(s))
+
+    #==========Skill Animation============
+    def use_skill(self, index):
+        if self.casting != None:
+            return                      
+        skill = self.skills[index]
+        if skill.ready():
+            self.casting = {"index": index, "timer": 0.0}
+
+    def finish_cast(self):
+        index = self.casting["index"]
+        self.casting = None
+        skill = self.skills[index]
+        used = EFFECTS[self.skill_ids[index]](self, skill)   # damage/heal
+        if used:
+            skill.use()                                      # cooldown
+
+    def draw_fx(self, stdscr):
+        if self.casting == None:
+            return
+        skill = self.skills[self.casting["index"]]
+        try:
+            frames = load_frames("fx", skill.fx)
+        except FileNotFoundError:
+            frames = load_frames("fx", "fx_hit")
+
+        n = int(self.casting["timer"] / skill.cast * len(frames))
+        if n >= len(frames):
+            n = len(frames) - 1
+
+        y, x = self.fx_positions[skill.fx_at]
+        draw_lines(stdscr, y, x, frames[n])
+        draw_text(stdscr, 1, 30, skill.name + "!")
