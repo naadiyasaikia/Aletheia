@@ -8,13 +8,13 @@ CHARACTERS = [
     {
         "name": "Starlight Girl",
         "art": "starlightgirl",
-        "hp": 80,
+        "hp": 110,
         "skills": ["starshot", "starfall", "lunar_veil", "supernova"],
     },
     {
         "name": "Cloudy Girl",
         "art": "cloudygirl",
-        "hp": 90,
+        "hp": 120,
         "skills": ["cloudburst", "thunderclap", "mist_drift", "tempest_waltz"],
     },
 ]
