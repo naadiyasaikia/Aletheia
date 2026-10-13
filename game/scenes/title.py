@@ -1,27 +1,42 @@
 from game.scenes.base import Scene
 from game.renderer import draw_text, draw_lines
 from game.assets import load_art
+from game.scenes.cutscene import CutsceneScene
+from game.data.story import INTRO
 
 class TitleScene(Scene):
     def __init__(self):
         Scene.__init__(self)
-        self.phase = "logo"          # phase 1 logo -> phase 2 menu
+        self.phase = "logo"
         self.timer = 0
         self.message = ""
         self.logo = load_art("logo")
         self.wand = load_art("wand")
+        self.awaiting_intro_finish = False
+
+    def start_intro(self):
+        if self.phase == "intro":
+            return
+        self.phase = "intro"
+        self.awaiting_intro_finish = True
+        self.engine.push_scene(CutsceneScene(INTRO))
 
     def update(self, dt):
-        # t3 seconds showing logo
         if self.phase == "logo":
             self.timer = self.timer + dt
             if self.timer >= 3:
+                self.start_intro()
+        elif self.phase == "intro":
+            if self.awaiting_intro_finish and self.engine.stack[-1] is self:
                 self.phase = "menu"
+                self.awaiting_intro_finish = False
 
     def handle_input(self, key):
-        # if logo phase, any key will go to menu
         if self.phase == "logo":
-            self.phase = "menu"
+            self.start_intro()
+            return
+
+        if self.phase == "intro":
             return
 
         if key == ord("a"):
@@ -35,13 +50,14 @@ class TitleScene(Scene):
         elif key == ord("d"):
             self.engine.pop_scene()
         else:
-            self.message = "Invalid choice! Please enter a, b, c, or d. " "Unless you want to be cursed. ψ(｀∇´)ψ"
+            text = "Invalid choice! You want to be cursed? ψ(｀∇´)ψ"
+            self.message = text
     def draw(self, stdscr):
         if self.phase == "logo":
             draw_lines(stdscr, 6, 0, self.logo)
-            draw_text(stdscr, 19, 28, "Press any key...")
+            draw_text(stdscr, 19, 70, "Press any key...")
         else:
-            draw_lines(stdscr, 1, 2, self.wand)          # wand on left
+            draw_lines(stdscr, 1, 2, self.wand)
             draw_text(stdscr, 6, 90, "Welcome to Aletheia!")
             draw_text(stdscr, 9, 90, "a. Tutorial")
             draw_text(stdscr, 10, 90, "b. Start game")

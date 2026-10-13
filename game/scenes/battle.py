@@ -11,8 +11,16 @@ from game.state import state
 from game.assets import load_art, load_frames
 
 class BattleScene(Scene):
-    def __init__(self):
+    def __init__(self, round_number=1):
         Scene.__init__(self)
+        self.round_number = round_number
+        if round_number == 1:
+            self.kills_to_win = 5
+        elif round_number == 2:
+            self.kills_to_win = 10
+        else:
+            self.kills_to_win = 10
+
         char = CHARACTERS[state.character]
         self.player_max_hp = char["hp"]
         self.player_hp = char["hp"]
@@ -37,6 +45,29 @@ class BattleScene(Scene):
 
         self.enemies = []
         self.spawn_timer = 0
+        self.kills = 0
+
+    def evaluate_round_result(self):
+        if self.kills >= self.kills_to_win:
+            from game.scenes.title import TitleScene
+
+            if self.round_number == 1:
+                from game.data.story import WIN_ROUND
+                from game.scenes.cutscene import CutsceneScene
+                self.engine.change_scene(CutsceneScene(WIN_ROUND, next_scene=lambda: BattleScene(round_number=2)))
+                return
+
+            if self.round_number == 2:
+                from game.data.story import GAME_OVER
+                from game.scenes.cutscene import CutsceneScene
+                self.engine.change_scene(CutsceneScene(GAME_OVER, next_scene=lambda: TitleScene()))
+                return
+
+        if self.player_hp <= 0:
+            from game.data.story import LOSE_ROUND
+            from game.scenes.cutscene import CutsceneScene
+            from game.scenes.title import TitleScene
+            self.engine.change_scene(CutsceneScene(LOSE_ROUND, next_scene=lambda: TitleScene()))
 
     def take_hit(self, dmg):
         if self.shield_time > 0:
@@ -94,10 +125,11 @@ class BattleScene(Scene):
         for e in self.enemies:
             if not e.is_dead():
                 alive.append(e)
+            else:
+                self.kills = self.kills + 1
         self.enemies = alive
 
-        if self.player_hp <= 0:
-            self.engine.pop_scene()
+        self.evaluate_round_result()
 
     def cd_bar(self, skill):
         if skill.charges == 0:
