@@ -8,13 +8,13 @@ INTRO = [
 
     ("", "Although, I'm not sure exactly what happened, because it happened a long time ago.."),
 
-    ("", "and I also left this city after..things started happening."),
+    #("", "and I also left this city after..things started happening."),
 
-    ("", "When I did live here, it seemed as though the number of ogres living here increased, and as you know, they're up to no good."),
+    #("", "When I did live here, it seemed as though the number of ogres living here increased, and as you know, they're up to no good."),
 
-    ("", "Pure malice, I tell you."),
+    #("", "Pure malice, I tell you."),
 
-    ("", "Oh, you live here? Ahah, I didn't expect you to be the *mahou-shoujo* typa girl... hahah."),
+    # ("", "Oh, you live here? Ahah, I didn't expect you to be the *mahou-shoujo* typa girl... hahah."),
 
     ("", "Anyways, enjoy your stay! Oh, you're a resident. Well then, enjoy your return, or something.. hahah."),
 
@@ -58,9 +58,12 @@ GAME_OVER = [
     ("???", "Finally, I've been waiting.... a long time... for you."),
 
     # Game over
-    ("", "GAME OVER"),
+    ("", "GAME OVER."),
 ]
 
 LOSE_ROUND = [
-    ("", "You fucked!")
+    ("magicalgirl", "I don't understand, what is happening?"),
+    ("magicalgirl", "It's almost like... I'm being pulled into a different world.."),
+    ("magicalgirl", "My soul... it feels like it's being torn apart.."),
+    ("", "GAME OVER. Try again?"),
 ]
