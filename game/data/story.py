@@ -14,7 +14,7 @@ INTRO = [
 
     ("", "Pure malice, I tell you."),
 
-    ("", "Oh, you live here? Ahah, I didnP't expect you to be the *mahou-shoujo* typa girl... hahah."),
+    ("", "Oh, you live here? Ahah, I didn't expect you to be the *mahou-shoujo* typa girl... hahah."),
 
     ("", "Anyways, enjoy your stay! Oh, you're a resident. Well then, enjoy your return, or something.. hahah."),
 

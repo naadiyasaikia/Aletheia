@@ -4,6 +4,8 @@ from game.assets import load_art
 from game.scenes.cutscene import CutsceneScene
 from game.data.story import INTRO
 
+
+
 class TitleScene(Scene):
     def __init__(self):
         Scene.__init__(self)
@@ -40,7 +42,8 @@ class TitleScene(Scene):
             return
 
         if key == ord("a"):
-            self.message = "Tutorial: not yet implemented"
+            from game.scenes.tutorial import TutorialScene
+            self.engine.push_scene(TutorialScene())
         elif key == ord("b"):
             from game.scenes.battle import BattleScene
             self.engine.push_scene(BattleScene())
@@ -48,10 +51,14 @@ class TitleScene(Scene):
             from game.scenes.customize import CustomizeScene
             self.engine.push_scene(CustomizeScene())
         elif key == ord("d"):
-            self.engine.pop_scene()
+            self.engine.pop_scene()     #basically pop the scene out of stack
+        elif key == ord("e"):
+            from game.scenes.credits_screen import CreditsScene
+            self.engine.push_scene(CreditsScene())
         else:
             text = "Invalid choice! You want to be cursed? ψ(｀∇´)ψ"
             self.message = text
+
     def draw(self, stdscr):
         if self.phase == "logo":
             draw_lines(stdscr, 6, 0, self.logo)
@@ -63,4 +70,5 @@ class TitleScene(Scene):
             draw_text(stdscr, 10, 90, "b. Start game")
             draw_text(stdscr, 11, 90, "c. Customize")
             draw_text(stdscr, 12, 90, "d. Quit")
+            draw_text(stdscr, 13, 90, "e. View credits!")
             draw_text(stdscr, 15, 90, self.message)

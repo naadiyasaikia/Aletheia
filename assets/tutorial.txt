@@ -1,0 +1,54 @@
+Welcome to Tutorial
+
+=====
+  HOW TO PLAY  (1/4)
+
+  You are a magical girl standing her ground.
+  Shadow monsters appear on the right side of the screen
+  and attack you over time.
+
+  Survive and defeat 15 enemies to win the game.
+
+  If your HP reaches 0, the round is over.
+
+  Skills are not instant: each one plays a short casting
+  animation first, and the damage lands when it finishes.
+=====
+  CONTROLS  (2/4)
+
+  Every girl has 4 skills, one for each number key:
+
+     [1]  Basic attack    fast, use it again and again
+     [2]  Strong attack   slower, hits harder
+     [3]  Defense / heal  survive the tough moments
+     [4]  Ultimate        huge power, needs time to charge
+
+  While a skill is casting, you cannot use another one.
+  Enemies keep attacking, so time your casts!
+=====
+  READING THE SCREEN  (3/4)
+
+  Bottom left shows your skills:
+
+     [1] Petal Burst  ██████████ READY
+     [2] Thorn Shower ███░░░░░░░ 1.8s
+
+  A full bar means the skill is ready.
+  The bar fills while the cooldown counts down.
+
+  READY x2 means the skill has limited uses left.
+  EMPTY means no uses remain this round.
+
+  The ultimate starts empty: wait for it to charge.
+=====
+  TIPS  (4/4)
+  - Customize your girl before the fight. Each one plays
+    differently: press [c] on the title screen.
+  - Healing has limited uses, save it for emergencies.
+  - Mist Drift blocks the next hit. Lunar Veil cuts damage
+    by 70% for a short time. Tempest Waltz makes you
+    invulnerable while it plays.
+  - Area skills shine when enemies pile up.
+  - Fast Bats hurt less per hit; Golems hit very hard but slowly.
+
+  Good luck, magical girl!

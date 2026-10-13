@@ -9,7 +9,10 @@ class Engine:
         curses.curs_set(0)      #hide the cursor
         stdscr.nodelay(True)    #don't wait for user input
         stdscr.keypad(True)      #enable special keys (like arrows)
+        stdscr.timeout(10)       #poll every 10 ms to keep input responsive
         self.stdscr.border()    #draw a border around the screen
+        curses.cbreak()
+        curses.noecho()
 
     #==============STACK METHODS================
     #use engine to push and pop scenes, so that the current scene can be changed
@@ -44,9 +47,13 @@ class Engine:
             last = start
 
             #handle input
-            key = self.stdscr.getch()
-            if key != -1:
+            while True:
+                key = self.stdscr.getch()
+                if key == -1:
+                    break
                 self.stack[-1].handle_input(key)
+                if len(self.stack) == 0:
+                    break
             if len(self.stack) == 0:
                 break
 
