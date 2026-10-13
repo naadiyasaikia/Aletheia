@@ -6,8 +6,8 @@ class Scene:
     def handle_input(self, key):
         pass
 
-    def update(self, delta_time):       #time between 2 frames, in a second
+    def update(self, dt):       #dt: delta time (time between 2 frames, in a second)
         pass
 
-    def draw(self, standard_screen):
+    def draw(self, stdscr):     #standard screen: the curses window to draw on
         pass

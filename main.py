@@ -2,14 +2,9 @@ import curses
 from game.engine import Engine
 from game.scenes.base import Scene
 from game import config
+from game.scenes.battle import BattleScene
 
-
-from game.scenes.title import show_menu
-
-if __name__ == "__main__":
-    show_menu()
-
-
+# test scene
 class DummyScene(Scene):
     def __init__(self):
         Scene.__init__(self)
@@ -32,10 +27,12 @@ class DummyScene(Scene):
         stdscr.addstr(self.y, self.x, "@")
 
 
-def main(standard_screen):
-    engine = Engine(standard_screen)
-    engine.push_scene(DummyScene())
+#========MAIN FLOW OF THE GAME========
+def main(stdscr):
+    engine = Engine(stdscr)
+    engine.push_scene(BattleScene())
     engine.run()
 
 
-curses.wrapper(main)
+if __name__ == "__main__":
+    curses.wrapper(main)

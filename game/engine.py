@@ -3,12 +3,12 @@ import curses
 from game import config
 
 class Engine:
-    def __init__(self, standard_screen):
-        self.standard_screen = standard_screen
+    def __init__(self, stdscr):
+        self.stdscr = stdscr
         self.stack = []     #STACK MANAGEMENT: stack of scenes
         curses.curs_set(0)      #hide the cursor
-        standard_screen.nodelay(True)    #don't wait for user input
-        standard_screen.keypad(True)      #enable special keys (like arrows)
+        stdscr.nodelay(True)    #don't wait for user input
+        stdscr.keypad(True)      #enable special keys (like arrows)
 
     #==============STACK METHODS================
     #use engine to push and pop scenes, so that the current scene can be changed
@@ -39,26 +39,26 @@ class Engine:
         while len(self.stack) > 0:
             #calculate delta time
             start = time.time()
-            delta_time = start - last
+            dt = start - last
             last = start
 
             #handle input
-            key = self.standard_screen.getch()
+            key = self.stdscr.getch()
             if key != -1:
                 self.stack[-1].handle_input(key)
             if len(self.stack) == 0:
                 break
 
             # update the current scene
-            self.stack[-1].update(delta_time)
+            self.stack[-1].update(dt)
 
             if len(self.stack) == 0:
                 break
 
             # erase -> draw -> refresh the current scene
-            self.standard_screen.erase()
-            self.stack[-1].draw(self.standard_screen)
-            self.standard_screen.refresh()
+            self.stdscr.erase()
+            self.stack[-1].draw(self.stdscr)
+            self.stdscr.refresh()
 
             # limit the frame rate
             used = time.time() - start

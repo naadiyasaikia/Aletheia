@@ -1,17 +1,7 @@
-class Skill:
-    def __init__(self, data):
-        self.name = data["name"]
-        self.cooldown = data["cooldown"]
-        self.cd_left = 0
-
-    def update(self, dt):
-        if self.cd_left > 0:
-            self.cd_left = self.cd_left - dt
-            if self.cd_left < 0:
-                self.cd_left = 0
-
-    def ready(self):
-        return self.cd_left == 0
-
-    def use(self):
-        self.cd_left = self.cooldown
+SKILLS = {
+    "basic":       {"name": "Attack",      "cooldown": 0.5,  "damage": 10},
+    "star_burst":  {"name": "Star Burst",  "cooldown": 4.0,  "damage": 15},
+    "moon_shield": {"name": "Moon Shield", "cooldown": 8.0},
+    "heart_beam":  {"name": "Heart Beam",  "cooldown": 12.0, "damage": 80},
+    "heal":        {"name": "Heal",        "cooldown": 10.0},
+}
