@@ -16,17 +16,29 @@ And yes.... do your best, yeah? The ogres.. they're quite troublesome. And troub
 
 You got this. All the best.
 
-ROUND WON
+ROUND #1 OVER
+
+ROUND WON 
 
 ROUND LOST
-
-GAME OVER
 
 -- rest of the story, that continues AFTER the first battle -ish --
 
 character pov (1st person):
 
 magicalgirl: I don't understand, what is happening?
+
+magicalgirl: Oh no, there's more....Aaah!
+
+-- round 2 begins --
+
+ROUND #2 OVER
+
+ROUND WON
+
+ROUND LOST
+
+-- round 2 ends -- 
 
 magicalgirl: They're gone, at least..
 
@@ -54,4 +66,4 @@ magicalgirl: ?!?!?!
 
 ???: Finally, I've been waiting....a long time...for you.
 
-
+GAME OVER
