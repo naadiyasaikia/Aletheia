@@ -30,7 +30,8 @@ class TitleScene(Scene):
             from game.scenes.battle import BattleScene
             self.engine.push_scene(BattleScene())
         elif key == ord("c"):
-            self.message = "Customize: not yet implemented"
+            from game.scenes.customize import CustomizeScene
+            self.engine.push_scene(CustomizeScene())
         elif key == ord("d"):
             self.engine.pop_scene()
         else:

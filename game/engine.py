@@ -9,6 +9,7 @@ class Engine:
         curses.curs_set(0)      #hide the cursor
         stdscr.nodelay(True)    #don't wait for user input
         stdscr.keypad(True)      #enable special keys (like arrows)
+        self.stdscr.border()    #draw a border around the screen
 
     #==============STACK METHODS================
     #use engine to push and pop scenes, so that the current scene can be changed
