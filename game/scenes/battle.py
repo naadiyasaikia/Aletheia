@@ -17,7 +17,7 @@ class BattleScene(Scene):
         char = CHARACTERS[state.character]
         self.player_max_hp = char["hp"]
         self.player_hp = char["hp"]
-        self.player_art = load_art(char["art"])
+        self.player_art = load_art("girls", char["art"])
 
         # 4 skills, each skill has its own cooldown and charges
         self.skill_ids = char["skills"]
@@ -122,7 +122,10 @@ class BattleScene(Scene):
         # enemy on the right, each enemy takes 3 lines
         for i in range(len(self.enemies)):
             e = self.enemies[i]
-            draw_text(stdscr, 3 + i * 3, 50, "<" + e.name + "> " + str(e.hp) + "/" + str(e.max_hp))
+            y = 1 + i * 4
+            draw_lines(stdscr, y, 52, load_art("enemies", e.art))
+            draw_text(stdscr, y + 3, 52, e.name + " " + str(e.hp) + "/" + str(e.max_hp))
+
 
         # 4 skill, each line: [1] Skill Name  █████░░░░░  2.3s
         for i in range(len(self.skills)):

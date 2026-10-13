@@ -5,6 +5,7 @@ class Enemy:
         self.max_hp = data["hp"]
         self.damage = data["damage"]
         self.attack_cd = data["attack_cd"]
+        self.art = data["art"]
         self.timer = 0
 
     def update(self, dt):

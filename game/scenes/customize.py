@@ -15,7 +15,7 @@ class CustomizeScene(Scene):
         self.art_h = 0
         self.art_w = 0
         for c in CHARACTERS:
-            art = load_art(c["art"])
+            art = load_art("girls", c["art"])
             if len(art) > self.art_h:
                 self.art_h = len(art)
             for line in art:
@@ -50,7 +50,7 @@ class CustomizeScene(Scene):
         bob = 0
         if int(self.time * 2) % 2 == 1:
             bob = 1
-        draw_lines(stdscr, self.box_y + 1 + bob, self.box_x + 3, load_art(char["art"]))
+        draw_lines(stdscr, self.box_y + 1 + bob, self.box_x + 3, load_art("girls", char["art"]))
 
         # stats and skills
         draw_text(stdscr, 2, tx, "CHARACTER")
