@@ -16,4 +16,8 @@ And yes.... do your best, yeah? The ogres.. they're quite troublesome. And troub
 
 You got this. All the best.
 
+ROUND WON
 
+ROUND LOST
+
+GAME OVER
