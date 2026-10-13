@@ -26,8 +26,6 @@ class TitleScene(Scene):
     def update(self, dt):
         if self.phase == "logo":
             self.timer = self.timer + dt
-            if self.timer >= 3:
-                self.start_intro()
         elif self.phase == "intro":
             if self.awaiting_intro_finish and self.engine.stack[-1] is self:
                 self.phase = "menu"
