@@ -1,5 +1,11 @@
 Welcome to Aletheia, a game that takes you on an enchanting journey with magical girls, fighting away evil spirits that haunt the city of Auroria, and uncover the lore that plagues the city along the way..
 
+👾 How to run:
+
+1. Download the code OR clone the repository.
+2. Navigate the project folder.
+3. Run **main.py**!
+
 🎮 Controls:
 
 Numbers 1, 2, 3, 4 to activate different powerups, and input characters where prompted to.
